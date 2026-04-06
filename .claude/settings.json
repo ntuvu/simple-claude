@@ -1,4 +1,59 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash",
+      "Read",
+      "Edit",
+      "Write",
+      "Task"
+    ],
+    "deny": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "ask": [
+      "Bash(rm *)",
+      "Bash(rmdir *)",
+      "Bash(rm -rf *)",
+      "Bash(git *)",
+      "Bash(npm install*)",
+      "Bash(npm i *)",
+      "Bash(npm i)",
+      "Bash(yarn add *)",
+      "Bash(yarn install*)",
+      "Bash(pnpm install*)",
+      "Bash(pnpm add *)",
+      "Bash(bun install*)",
+      "Bash(bun add *)",
+      "Bash(pip install*)",
+      "Bash(uv add *)",
+      "Bash(uv sync*)",
+      "Bash(uv pip install*)",
+      "Bash(poetry add *)",
+      "Bash(cargo add *)",
+      "Bash(go get *)",
+      "Bash(npm run build*)",
+      "Bash(npm run test*)",
+      "Bash(yarn build*)",
+      "Bash(yarn test*)",
+      "Bash(pnpm build*)",
+      "Bash(pnpm test*)",
+      "Bash(bun run build*)",
+      "Bash(bun run test*)",
+      "Bash(pytest*)",
+      "Bash(jest*)",
+      "Bash(vitest*)",
+      "Bash(cargo test*)",
+      "Bash(go test*)",
+      "Bash(make build*)",
+      "Bash(make test*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/node_modules/**)",
+      "Read(**/.venv/**)",
+      "Read(**/venv/**)"
+    ]
+  },
   "hooks": {
     "PreToolUse": [
       {
@@ -198,6 +253,19 @@
         ]
       }
     ],
+    "TaskCreated": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/hooks.py",
+            "timeout": 5000,
+            "async": true,
+            "statusMessage": "TaskCreated"
+          }
+        ]
+      }
+    ],
     "TaskCompleted": [
       {
         "hooks": [
@@ -285,6 +353,59 @@
             "timeout": 5000,
             "async": true,
             "statusMessage": "ElicitationResult"
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/hooks.py",
+            "timeout": 5000,
+            "async": true,
+            "statusMessage": "StopFailure"
+          }
+        ]
+      }
+    ],
+    "CwdChanged": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/hooks.py",
+            "timeout": 5000,
+            "async": true,
+            "statusMessage": "CwdChanged"
+          }
+        ]
+      }
+    ],
+    "FileChanged": [
+      {
+        "matcher": ".envrc|.env|.env.local",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/hooks.py",
+            "timeout": 5000,
+            "async": true,
+            "statusMessage": "FileChanged"
+          }
+        ]
+      }
+    ],
+    "PermissionDenied": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/hooks.py",
+            "timeout": 5000,
+            "async": true,
+            "statusMessage": "PermissionDenied"
           }
         ]
       }
