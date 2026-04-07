@@ -1,59 +1,49 @@
 {
-  "permissions": {
+    "permissions": {
     "allow": [
-      "Bash",
-      "Read",
-      "Edit",
-      "Write",
-      "Task"
+      "Edit(*)",
+      "Write(*)",
+      "NotebookEdit(*)",
+      "Bash"
+
     ],
-    "deny": [
-      "WebSearch",
-      "WebFetch"
-    ],
+    "deny": ["WebSearch", "WebFetch"],
     "ask": [
       "Bash(rm *)",
       "Bash(rmdir *)",
-      "Bash(rm -rf *)",
-      "Bash(git *)",
-      "Bash(npm install*)",
-      "Bash(npm i *)",
-      "Bash(npm i)",
-      "Bash(yarn add *)",
-      "Bash(yarn install*)",
-      "Bash(pnpm install*)",
-      "Bash(pnpm add *)",
-      "Bash(bun install*)",
-      "Bash(bun add *)",
-      "Bash(pip install*)",
-      "Bash(uv add *)",
-      "Bash(uv sync*)",
-      "Bash(uv pip install*)",
-      "Bash(poetry add *)",
-      "Bash(cargo add *)",
-      "Bash(go get *)",
-      "Bash(npm run build*)",
-      "Bash(npm run test*)",
-      "Bash(yarn build*)",
-      "Bash(yarn test*)",
-      "Bash(pnpm build*)",
-      "Bash(pnpm test*)",
-      "Bash(bun run build*)",
-      "Bash(bun run test*)",
-      "Bash(pytest*)",
-      "Bash(jest*)",
-      "Bash(vitest*)",
-      "Bash(cargo test*)",
-      "Bash(go test*)",
-      "Bash(make build*)",
-      "Bash(make test*)",
-      "Read(**/.env)",
-      "Read(**/.env.*)",
-      "Read(**/node_modules/**)",
-      "Read(**/.venv/**)",
-      "Read(**/venv/**)"
+      "Bash(shred *)",
+      "Bash(unlink *)",
+      "Bash(dd *)",
+      "Bash(mkfs *)",
+      "Bash(fdisk *)",
+      "Bash(chmod *)",
+      "Bash(chown *)",
+      "Bash(npm *)",
+      "Bash(pip *)",
+      "Bash(pip3 *)",
+      "Bash(yarn *)",
+      "Bash(pnpm *)",
+      "Bash(docker *)",
+      "Bash(kubectl *)",
+      "Bash(firebase *)",
+      "Bash(gcloud *)",
+      "Bash(wget *)",
+      "Bash(kill *)",
+      "Bash(killall *)",
+      "Bash(pkill *)"
     ]
   },
+  "plansDirectory": "./reports",
+  "outputStyle": "Explanatory",
+  "statusLine": {
+    "type": "command",
+    "command": "zsh .claude/statusline.sh",
+    "padding": 1
+  },
+  "spinnerTipsEnabled": true,
+  "respectGitignore": true,
+  "enableAllProjectMcpServers": true,
+  "disableAllHooks": false,
   "hooks": {
     "PreToolUse": [
       {
@@ -288,6 +278,32 @@
             "timeout": 5000,
             "async": true,
             "statusMessage": "ConfigChange"
+          }
+        ]
+      }
+    ],
+    "WorktreeCreate": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/hooks.py",
+            "timeout": 5000,
+            "async": true,
+            "statusMessage": "WorktreeCreate"
+          }
+        ]
+      }
+    ],
+    "WorktreeRemove": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/hooks.py",
+            "timeout": 5000,
+            "async": true,
+            "statusMessage": "WorktreeRemove"
           }
         ]
       }
