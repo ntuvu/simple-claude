@@ -1,7 +1,9 @@
 ---
 name: web-fetch
 description: >-
-  Read a webpage's full content as clean markdown. Use after web_search_exa when highlights are insufficient or to read any URL. Best for: Extracting full content from known URLs. Batch multiple URLs in one call. Returns: Clean text content and metadata from the page(s).
+  Read a webpage's full content as clean markdown. Use after web-search when highlights are insufficient or to read any URL. Best for: Extracting full content from known URLs. Batch multiple URLs in one call. Returns: Clean text content and metadata from the page(s).
+context: fork
+agent: search-agent
 ---
 
 # Web Fetch (Exa via CLI)
@@ -56,7 +58,7 @@ printf '{"urls":["https://docs.dagster.io"],"maxCharacters":3000}' | python3 scr
 ## When to Use
 
 Use for:
-- reading full content after `web_search_exa` snippets are too short
+- reading full content after `web-search` snippets are too short
 - extracting details from known source URLs
 - comparing content across multiple pages
 

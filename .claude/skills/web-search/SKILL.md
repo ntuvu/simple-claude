@@ -1,7 +1,9 @@
 ---
 name: web-search
 description: >- 
-  Search the web for any topic and get clean, ready-to-use content. Best for: Finding current information, news, facts, or answering questions about any topic. Returns: Clean text content from top search results, ready for LLM use. Query tips: describe the ideal page, not keywords. "blog post comparing React and Vue performance" not "React vs Vue". If highlights are insufficient, follow up with web_fetch_exa on the best URLs.
+  Search the web for any topic and get clean, ready-to-use content. Best for: Finding current information, news, facts, or answering questions about any topic. Returns: Clean text content from top search results, ready for LLM use. Query tips: describe the ideal page, not keywords. "blog post comparing React and Vue performance" not "React vs Vue". If highlights are insufficient, follow up with web-fetch on the best URLs.
+context: fork
+agent: search-agent
 ---
 
 # Web Search (Exa via CLI)
@@ -48,7 +50,7 @@ printf '{"query":"<query>","numResults":10}' | python3 scripts/callmcp.py
 - returns titles, URLs, and highlighted snippets from top pages
 - works best for broad discovery and fast research
 
-If highlights are insufficient, follow up with `web_fetch_exa` on the best URL(s).
+If highlights are insufficient, follow up with `web-fetch` on the best URL(s).
 
 ## When to Use
 
