@@ -1,9 +1,7 @@
 ---
-name: web-fetch-exa
+name: web-fetch
 description: >-
   Read a webpage's full content as clean markdown. Use after web_search_exa when highlights are insufficient or to read any URL. Best for: Extracting full content from known URLs. Batch multiple URLs in one call. Returns: Clean text content and metadata from the page(s).
-context: fork
-agent: search-agent
 ---
 
 # Web Fetch (Exa via CLI)

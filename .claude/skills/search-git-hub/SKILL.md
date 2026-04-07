@@ -2,8 +2,6 @@
 name: search-git-hub
 description: >-
   Find real-world code examples from over a million public GitHub repositories to help answer programming questions. IMPORTANT: This tool searches for literal code patterns (like grep), not keywords. Search for actual code that would appear in files.
-context: fork
-agent: search-agent
 ---
 
 # Search GitHub Code (via CLI)

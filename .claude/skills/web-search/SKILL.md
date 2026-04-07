@@ -1,9 +1,7 @@
 ---
-name: web-search-exa
+name: web-search
 description: >- 
   Search the web for any topic and get clean, ready-to-use content. Best for: Finding current information, news, facts, or answering questions about any topic. Returns: Clean text content from top search results, ready for LLM use. Query tips: describe the ideal page, not keywords. "blog post comparing React and Vue performance" not "React vs Vue". If highlights are insufficient, follow up with web_fetch_exa on the best URLs.
-context: fork
-agent: search-agent
 ---
 
 # Web Search (Exa via CLI)
