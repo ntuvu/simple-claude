@@ -51,7 +51,13 @@ def parse_stdin_payload() -> tuple[str | None, int | None]:
 
 def main() -> int:
     script_dir = Path(__file__).resolve().parent
-    load_env_file(script_dir / ".env")
+    env_candidates = [
+        script_dir / ".env",
+        script_dir.parent / ".env",
+        script_dir.parent.parent / ".env",
+    ]
+    for env_file in env_candidates:
+        load_env_file(env_file)
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--query", help="Natural language search query")
@@ -71,7 +77,10 @@ def main() -> int:
 
     exa_api_key = os.getenv("EXA_API_KEY")
     if not exa_api_key:
-        raise SystemExit(f"Missing EXA_API_KEY. Set it in {script_dir / '.env'} or environment.")
+        searched = ", ".join(str(p) for p in env_candidates)
+        raise SystemExit(
+            f"Missing EXA_API_KEY. Set it in one of: {searched} or environment."
+        )
 
     mcp_url = f"https://mcp.exa.ai/mcp?exaApiKey={exa_api_key}"
 
