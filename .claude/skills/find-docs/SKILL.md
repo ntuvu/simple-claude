@@ -35,6 +35,16 @@ Or run directly without installing:
 npx ctx7@latest <command>
 ```
 
+## Token Isolation (Critical)
+
+Never run docs lookup in main context. Always use `search-agent` for this skill.
+
+- Agent runs Context7 resolve (`ctx7 library ...`) then docs query (`ctx7 docs ...`)
+- Agent extracts minimum viable snippet(s) + hard constraints (version/source/date)
+- Agent deduplicates near-identical snippets/examples before returning
+- Agent returns copyable snippets + brief explanation
+- Main context stays clean regardless of lookup volume
+
 ## Workflow
 
 Two-step process: resolve the library name to an ID, then query docs with that ID.

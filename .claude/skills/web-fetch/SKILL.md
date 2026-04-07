@@ -13,6 +13,16 @@ agent: search-agent
 Use CLI script `./scripts/callmcp.py` to call `web-fetch-exa`.
 Do NOT call MCP tool directly.
 
+## Token Isolation (Critical)
+
+Never run Exa in main context. Always use `search-agent` for this skill.
+
+- Agent runs CLI fetch via `scripts/callmcp.py`
+- Agent extracts minimum viable snippet(s) from each URL + constraints
+- Agent deduplicates overlapping/near-identical page content
+- Agent returns copyable snippets + brief explanation
+- Main context stays clean regardless of fetch volume
+
 ## CLI to use
 
 ```bash
